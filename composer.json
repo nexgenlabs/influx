@@ -1,10 +1,10 @@
 {
-    "name": "influx",
+    "name": "nexgenlabs/influx",
     "type": "project",
     "description": "Influx is a web-based status monitor built with PHP and React.",
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.1",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
+            "Influx\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

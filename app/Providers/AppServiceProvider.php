@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Influx\Providers;
 
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Influx\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use Influx\Http\Controllers\Controller;
+use Influx\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

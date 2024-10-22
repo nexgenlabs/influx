@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Influx\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use Influx\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
