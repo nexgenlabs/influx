@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Influx\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
