@@ -2,13 +2,15 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
+import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
 export default function Authenticated({
+    title,
     header,
     children,
-}: PropsWithChildren<{ header?: ReactNode }>) {
+}: PropsWithChildren<{ header?: ReactNode; title?: string }>) {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -16,13 +18,14 @@ export default function Authenticated({
 
     return (
         <div className="min-h-screen bg-black font-semibold">
+            <Head title={title ?? '404'} />
             <nav className="border-b border-gray-700 bg-zinc-950">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    <ApplicationLogo />
                                 </Link>
                             </div>
 
@@ -31,6 +34,9 @@ export default function Authenticated({
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
+                                    <ComputerDesktopIcon
+                                        className={'mr-2 h-5 w-5'}
+                                    />
                                     Dashboard
                                 </NavLink>
                             </div>
@@ -135,6 +141,7 @@ export default function Authenticated({
                             href={route('dashboard')}
                             active={route().current('dashboard')}
                         >
+                            <ComputerDesktopIcon />
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
@@ -173,7 +180,13 @@ export default function Authenticated({
                 </header>
             )}
 
-            <main>{children}</main>
+            <main>
+                <div className="py-12">
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        {children}
+                    </div>
+                </div>
+            </main>
         </div>
     );
 }
