@@ -38,19 +38,13 @@ export default function Welcome() {
                                         >
                                             Log in
                                         </Link>
-                                        <Link
-                                            href={route('register')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </Link>
                                     </>
                                 )}
                             </nav>
                         </header>
 
                         <main className="mt-6">
-                            <div className="grid gap-6 lg:gap-8">
+                            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
                                 <RowCard
                                     icon={
                                         <ServerIcon
@@ -63,7 +57,33 @@ export default function Welcome() {
                                     content={
                                         'This is a test server instance for ngl/influx 1.0'
                                     }
-                                ></RowCard>
+                                />
+                                <RowCard
+                                    icon={
+                                        <ServerIcon
+                                            className={
+                                                'h-10 w-10 text-green-400'
+                                            }
+                                        />
+                                    }
+                                    title={'Instance GB-01-HP'}
+                                    content={
+                                        'This is a test server instance for ngl/influx 1.0'
+                                    }
+                                />
+                                <RowCard
+                                    icon={
+                                        <ServerIcon
+                                            className={
+                                                'h-10 w-10 text-green-400'
+                                            }
+                                        />
+                                    }
+                                    title={'Instance GB-01-HP'}
+                                    content={
+                                        'This is a test server instance for ngl/influx 1.0'
+                                    }
+                                />
                             </div>
                         </main>
 
