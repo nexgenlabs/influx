@@ -22,8 +22,12 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::get('/', [UsersController::class, 'index'])->name('users.index');
+
         Route::get('/new', [UsersController::class, 'new'])->name('users.new');
         Route::post('/new', [UsersController::class, 'store'])->name('users.store');
+
+        Route::get('/{user:id}', [UsersController::class, 'view'])->name('users.view');
+        Route::put('/{user:id}', [UsersController::class, 'update'])->name('users.update');
     });
 
     Route::prefix('/profile')->group(function () {

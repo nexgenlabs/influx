@@ -27,7 +27,7 @@ export default function Index({ users }: PageProps<{ users: User[] }>) {
                             >
                                 <Avatar
                                     variant={'beam'}
-                                    name={'EmailName'}
+                                    name={user.name}
                                     className={'h-10 w-10'}
                                 />
                                 <div className="ps-3">
@@ -49,12 +49,12 @@ export default function Index({ users }: PageProps<{ users: User[] }>) {
                                 </div>
                             </td>
                             <td className="px-6 py-4">
-                                <a
+                                <Link
                                     href={`/users/${user.id}`}
                                     className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                 >
                                     Edit
-                                </a>
+                                </Link>
                             </td>
                         </tr>
                     ))}

@@ -6,9 +6,17 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Influx\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Hashing\Hasher;
 
 class UsersController extends Controller
 {
+    /**
+     * UsersController constructor.
+     */
+    public function __construct(private Hasher $hasher)
+    {
+    }
+
     /**
      * Display the table holding all user accounts.
      */
@@ -40,9 +48,47 @@ class UsersController extends Controller
         ]);
         
         $validated['superuser'] = $validated['superuser'] === 'on' ? true : false;
+        $validated['password'] = $this->hasher->make($validated['password']);
 
-        User::create($validated);
+        $user = User::create($validated);
 
-        return Inertia::render('Users/Index');
+        return Inertia::render('Users/Edit', ['user' => $user]);
+    }
+
+    /**
+     * View a user already on the system.
+     */
+    public function view(Request $request, int $id): Response
+    {
+        return Inertia::render('Users/Edit', [
+            'user' => User::findOrFail($id),
+        ]);
+    }
+
+    /**
+     * Update the details of an existing user.
+     */
+    public function update(Request $request, int $id): Response
+    {
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => ['required', 'max:50'],
+            'email' => ['required', 'max:50', 'email'],
+            'password' => ['nullable', 'min:8'],
+            'superuser' => ['required'],
+        ]);
+        
+        if (!empty($validated['password'])) {
+            $validated['password'] = $this->hasher->make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        $validated['superuser'] = $validated['superuser'] === 'on' ? true : false;
+
+        $user->forceFill($validated)->saveOrFail();
+
+        return Inertia::render('Users/Edit', ['user' => $user]);
     }
 }
