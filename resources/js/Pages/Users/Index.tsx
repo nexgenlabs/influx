@@ -1,11 +1,18 @@
+import PrimaryButton from '@/Components/PrimaryButton';
 import { Body, Head } from '@/Components/Table';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { PageProps, User } from '@/types';
+import { Link } from '@inertiajs/react';
 import Avatar from 'boring-avatars';
 
 export default function Index({ users }: PageProps<{ users: User[] }>) {
     return (
         <Authenticated title={'All Users'}>
+            <div className={'mb-4 text-right'}>
+                <Link href={'/users/new'}>
+                    <PrimaryButton>New User</PrimaryButton>
+                </Link>
+            </div>
             <table className="w-full text-left text-sm text-gray-400">
                 <Head columns={['Name', 'Position', 'Status', 'Action']} />
                 <Body>

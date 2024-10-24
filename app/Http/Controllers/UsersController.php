@@ -18,4 +18,31 @@ class UsersController extends Controller
             'users' => User::all(),
         ]);
     }
+
+    /**
+     * Display the form for creating a new user.
+     */
+    public function new(Request $request): Response
+    {
+        return Inertia::render('Users/New');
+    }
+
+    /**
+     * Store a new user request.
+     */
+    public function store(Request $request): Response
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'max:50', 'unique:users,name'],
+            'email' => ['required', 'max:50', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:8'],
+            'superuser' => ['required'],
+        ]);
+        
+        $validated['superuser'] = $validated['superuser'] === 'on' ? true : false;
+
+        User::create($validated);
+
+        return Inertia::render('Users/Index');
+    }
 }

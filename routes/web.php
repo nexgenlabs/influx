@@ -22,6 +22,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::get('/', [UsersController::class, 'index'])->name('users.index');
+        Route::get('/new', [UsersController::class, 'new'])->name('users.new');
+        Route::post('/new', [UsersController::class, 'store'])->name('users.store');
     });
 
     Route::prefix('/profile')->group(function () {
