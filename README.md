@@ -1,9 +1,9 @@
 <p align="center"><a href="https://github.com/nexgenlabs" target="_blank"><img src="https://github.com/user-attachments/assets/cc3ea82e-7d18-4101-8a95-84d6c7a74d62"></img></p>
 
 <p align="center">
-<img src="https://img.shields.io/github/actions/workflow/status/nexgenlabs/influx/laravel.yml?style=for-the-badge">
-<img src="https://img.shields.io/github/languages/top/nexgenlabs/influx?style=for-the-badge">
-<img src="https://img.shields.io/github/issues/nexgenlabs/influx?style=for-the-badge">
+    <img src="https://img.shields.io/github/actions/workflow/status/nexgenlabs/influx/laravel.yml?style=for-the-badge">
+    <img src="https://img.shields.io/github/languages/top/nexgenlabs/influx?style=for-the-badge">
+    <img src="https://img.shields.io/github/issues/nexgenlabs/influx?style=for-the-badge">
 </p>
 
 ## nexgen/influx

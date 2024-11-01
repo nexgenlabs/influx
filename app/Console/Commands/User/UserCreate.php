@@ -1,13 +1,13 @@
 <?php
 
-namespace Influx\Console\Commands;
+namespace Influx\Console\Commands\User;
 
 use Influx\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class CreateUser extends Command
+class UserCreate extends Command
 {
     protected $signature = 'user:create';
     protected $description = 'Create a new user and return login details';
