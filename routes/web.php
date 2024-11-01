@@ -9,7 +9,6 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -28,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/{user:id}', [UsersController::class, 'view'])->name('users.view');
         Route::put('/{user:id}', [UsersController::class, 'update'])->name('users.update');
+        Route::delete('/{user:id}', [UsersController::class, 'delete'])->name('users.delete');
     });
 
     Route::prefix('/profile')->group(function () {

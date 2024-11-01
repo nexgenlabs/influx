@@ -1,7 +1,9 @@
+import DangerButton from '@/Components/DangerButton';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { User } from '@/types';
 import { router } from '@inertiajs/react';
 import { useState } from 'react';
+import DeleteUserForm from './DeleteUserForm';
 
 export default function UserForm({ user }: { user?: User }) {
     const [values, setValues] = useState({
@@ -106,7 +108,10 @@ export default function UserForm({ user }: { user?: User }) {
                 </div>
             </div>
             <div className={'text-right'}>
-                <PrimaryButton type={'submit'}>Submit</PrimaryButton>
+                {user && (
+                    <DeleteUserForm id={user!.id} />
+                )}
+                <PrimaryButton type={'submit'}>{user ? 'Update' : 'Create'} User</PrimaryButton>
             </div>
         </form>
     );

@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Influx\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Hashing\Hasher;
 
 class UsersController extends Controller
@@ -90,5 +91,21 @@ class UsersController extends Controller
         $user->forceFill($validated)->saveOrFail();
 
         return Inertia::render('Users/Edit', ['user' => $user]);
+    }
+
+    /**
+     * Delete a user account.
+     */
+    public function delete(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            $user->delete();
+        } catch (\Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        };
+
+        return redirect()->intended(route('users.index', absolute: false));;
     }
 }
