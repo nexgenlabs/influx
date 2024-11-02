@@ -26,7 +26,7 @@ export default function UserForm({ user }: { user?: User }) {
     function handleSubmit(e: { preventDefault: () => void }) {
         e.preventDefault();
 
-        if (user) {
+        if (user!.id) {
             router.put(`/users/${user!.id}`, values);
         } else {
             router.post('/users/new', values);

@@ -25,7 +25,7 @@ export default function ServerForm({ server }: { server?: Server }) {
     function handleSubmit(e: { preventDefault: () => void }) {
         e.preventDefault();
 
-        if (server) {
+        if (server!.id) {
             router.put(`/servers/${server!.id}`, values);
         } else {
             router.post('/servers/new', values);
