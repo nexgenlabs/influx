@@ -12,7 +12,7 @@ export interface Server {
     id: number;
     name: string;
     address: string;
-    ownerId: number;
+    owner_id: number;
     public: boolean;
 }
 

@@ -10,6 +10,8 @@ import { useState } from 'react';
 export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
     const [filter, setFilter] = useState<string>('');
 
+    console.log(servers[0]);
+
     return (
         <Authenticated title={'All Servers'}>
             <div className={'mb-4 flex justify-between'}>
@@ -64,7 +66,13 @@ export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
                                     </div>
                                 </th>
                                 <td className="px-6 py-4">
-                                    {server.ownerId ?? 'None'}
+                                    {server.owner_id ? (
+                                        <Link href={`/users/${server.owner_id}`}>
+                                            User {server.owner_id}
+                                        </Link>
+                                    ) : (
+                                        <>N/A</>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4">
                                     {server.public ? (

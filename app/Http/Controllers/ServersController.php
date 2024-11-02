@@ -89,11 +89,15 @@ class ServersController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'max:50'],
             'address' => ['required', 'url'],
-            'owner_id' => ['nullable', 'exists:users,id'],
+            'owner_id' => ['nullable'],
             'public' => ['required'],
         ]);
 
         $validated['public'] = $validated['public'] === 'on' ? true : false;
+
+        if ($request['owner_id'] != 0 && !User::where('id', $request['owner_id'])->exists()) {
+            throw new \Exception('This user does not exist.');
+        };
 
         $server = Server::findOrFail($id)->forceFill($validated)->saveOrFail();
 

@@ -4,7 +4,7 @@ import { PageProps, Server, User } from '@/types';
 import Avatar from 'boring-avatars';
 import ServerForm from './ServerForm';
 
-export default function Edit({ server, owner }: PageProps<{ server: Server, owner?: User }>) {
+export default function Edit({ server, users, owner }: PageProps<{ server: Server, users: User[], owner?: User }>) {
     return (
         <Authenticated title={'Edit server: ' + server.name}>
             <Card
@@ -23,7 +23,7 @@ export default function Edit({ server, owner }: PageProps<{ server: Server, owne
                             />
                         </div>
                     </div>
-                    <ServerForm server={server} owner={owner} />
+                    <ServerForm server={server} users={users} owner={owner} />
                 </div>
             </Card>
         </Authenticated>

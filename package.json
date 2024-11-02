@@ -37,6 +37,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.5",
-        "boring-avatars": "^1.11.2"
+        "boring-avatars": "^1.11.2",
+        "react-select": "^5.8.2"
     }
 }
