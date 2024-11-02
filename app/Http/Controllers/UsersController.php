@@ -53,7 +53,13 @@ class UsersController extends Controller
 
         $user = User::create($validated);
 
-        return Inertia::render('Users/Edit', ['user' => $user]);
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+            'alert' => [
+                'type' => 'success',
+                'message' => 'User account has been saved.',
+            ],
+        ]);
     }
 
     /**
@@ -90,13 +96,19 @@ class UsersController extends Controller
 
         $user->forceFill($validated)->saveOrFail();
 
-        return Inertia::render('Users/Edit', ['user' => $user]);
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+            'alert' => [
+                'type' => 'success',
+                'message' => 'User account details have been saved.',
+            ],
+        ]);
     }
 
     /**
      * Delete a user account.
      */
-    public function delete(int $id): RedirectResponse
+    public function delete(int $id): Response
     {
         $user = User::findOrFail($id);
 
@@ -106,6 +118,12 @@ class UsersController extends Controller
             throw new \Exception($ex->getMessage());
         };
 
-        return redirect()->intended(route('users.index', absolute: false));;
+        return Inertia::render('Users/Index', [
+            'users' => User::all(),
+            'alert' => [
+                'type' => 'info',
+                'message' => 'User account has been removed.',
+            ],
+        ]);
     }
 }

@@ -19,7 +19,7 @@ export default function Edit({ server }: PageProps<{ server: Server }>) {
                             <Avatar
                                 name={server.name}
                                 className={'h-24'}
-                                variant={'beam'}
+                                variant={'bauhaus'}
                             />
                         </div>
                     </div>

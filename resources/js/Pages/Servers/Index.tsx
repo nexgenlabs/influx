@@ -56,7 +56,7 @@ export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
                                     className="flex items-center whitespace-nowrap px-6 py-4"
                                 >
                                     <Avatar
-                                        variant={'beam'}
+                                        variant={'bauhaus'}
                                         name={server.name}
                                         className={'h-10 w-10'}
                                     />
