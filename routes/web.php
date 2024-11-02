@@ -1,16 +1,15 @@
 <?php
 
-use Influx\Http\Controllers\UsersController;
-use Influx\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use Influx\Http\Controllers\UsersController;
+use Influx\Http\Controllers\ServersController;
+use Influx\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 });
 
@@ -28,6 +27,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/{user:id}', [UsersController::class, 'view'])->name('users.view');
         Route::put('/{user:id}', [UsersController::class, 'update'])->name('users.update');
         Route::delete('/{user:id}', [UsersController::class, 'delete'])->name('users.delete');
+    });
+
+    Route::prefix('/servers')->group(function () {
+        Route::get('/', [ServersController::class, 'index'])->name('servers.index');
     });
 
     Route::prefix('/profile')->group(function () {
