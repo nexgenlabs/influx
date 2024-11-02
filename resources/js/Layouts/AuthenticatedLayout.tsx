@@ -1,3 +1,4 @@
+import Alert from '@/Components/Alert';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
@@ -12,6 +13,7 @@ export default function Authenticated({
     children,
 }: PropsWithChildren<{ header?: ReactNode; title?: string }>) {
     const user = usePage().props.auth.user;
+    const alert = usePage().props.alert;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -19,6 +21,7 @@ export default function Authenticated({
     return (
         <div className="min-h-screen bg-black font-semibold">
             <Head title={title ?? '404'} />
+            {alert && <Alert type={alert.type} message={alert.message} />}
             <nav className="border-b border-gray-700 bg-zinc-950">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">

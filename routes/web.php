@@ -31,6 +31,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('/servers')->group(function () {
         Route::get('/', [ServersController::class, 'index'])->name('servers.index');
+
+        Route::post('/new', [ServersController::class, 'store'])->name('servers.store');
+
+        Route::get('/{server:id}', [ServersController::class, 'view'])->name('servers.view');
+        Route::put('/{server:id}', [ServersController::class, 'update'])->name('servers.update');
     });
 
     Route::prefix('/profile')->group(function () {

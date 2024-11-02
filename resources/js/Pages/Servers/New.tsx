@@ -1,7 +1,7 @@
 import Card from '@/Components/Card';
+import ServerForm from './ServerForm';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { ServerStackIcon } from '@heroicons/react/24/outline';
-import ServerForm from './ServerForm';
 
 export default function New() {
     return (

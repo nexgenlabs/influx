@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('owner_id');
+            $table->unsignedInteger('owner_id')->nullable();
             $table->boolean('public')->default(false);
             $table->string('name');
             $table->string('address');

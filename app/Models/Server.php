@@ -20,9 +20,9 @@ class Server extends Model
      * Rules to validate when modifying data.
      */
     public static array $validationRules = [
-        'owner_id' => 'required|int',
+        'owner_id' => 'nullable|int|exists:users,id',
         'public' => 'nullable|bool',
-        'name' => 'required|string|min:3|max:30',
+        'name' => 'required|string|min:3|max:30|unique:servers,name',
         'address' => 'required|string', // /[A-Za-z]+://[A-Za-z0-9]+\\.[A-Za-z][A-Za-z][A-Za-z]:[0-9]+/i
     ];
 }

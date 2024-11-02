@@ -7,6 +7,8 @@ export default function ServerForm({ server }: { server?: Server }) {
     const [values, setValues] = useState({
         name: server?.name ?? '',
         address: server?.address ?? '',
+        owner_id: server?.ownerId ?? null,
+        public: server?.public ?? false,
     });
 
     function handleChange(e: {
@@ -74,9 +76,7 @@ export default function ServerForm({ server }: { server?: Server }) {
                         id="owner_id"
                         defaultValue={server?.ownerId}
                         className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-green-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-green-500"
-                        placeholder=" "
                         onChange={handleChange}
-                        required
                     />
                     <label
                         htmlFor="name"

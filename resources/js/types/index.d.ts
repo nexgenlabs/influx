@@ -1,3 +1,5 @@
+import { AlertType } from "@/Components/Alert";
+
 export interface User {
     id: number;
     name: string;
@@ -14,10 +16,16 @@ export interface Server {
     public: boolean;
 }
 
+export interface Alert {
+    type: AlertType;
+    message: string;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
     auth: {
         user: User;
     };
+    alert?: Alert;
 };
