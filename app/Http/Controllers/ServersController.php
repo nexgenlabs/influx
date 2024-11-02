@@ -4,6 +4,7 @@ namespace Influx\Http\Controllers;
 
 use Inertia\Inertia;
 use Inertia\Response;
+use Influx\Models\User;
 use Influx\Models\Server;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,16 @@ class ServersController extends Controller
     }
 
     /**
+     * Display the table holding all servers.
+     */
+    public function new(Request $request): Response
+    {
+        return Inertia::render('Servers/New', [
+            'users' => User::all(),
+        ]);
+    }
+
+    /**
      * Store a new server request.
      */
     public function store(Request $request): Response
@@ -34,13 +45,17 @@ class ServersController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'max:50', 'unique:servers,name'],
             'address' => ['required', 'url'],
-            'owner_id' => ['nullable', 'exists:users,id'],
+            'owner_id' => ['nullable'],
             'public' => ['required'],
         ]);
 
         $validated['public'] = $validated['public'] === 'on' ? true : false;
 
-        $server= Server::create($validated);
+        if ($request['owner_id'] != 0 && !User::where('id', $request['owner_id'])->exists()) {
+            throw new \Exception('This user does not exist.');
+        };
+
+        $server = Server::create($validated);
 
         return Inertia::render('Servers/Edit', [
             'server' => $server,
@@ -56,8 +71,13 @@ class ServersController extends Controller
      */
     public function view(Request $request, int $id): Response
     {
+        $users = User::all();
+        $server = Server::findOrFail($id);
+
         return Inertia::render('Servers/Edit', [
-            'server' => Server::findOrFail($id),
+            'users' => $users,
+            'server' => $server,
+            'owner' => $users->where('id', $server->owner_id)->first(),
         ]);
     }
 

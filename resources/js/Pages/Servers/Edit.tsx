@@ -1,10 +1,10 @@
 import Card from '@/Components/Card';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
-import { PageProps, Server } from '@/types';
+import { PageProps, Server, User } from '@/types';
 import Avatar from 'boring-avatars';
 import ServerForm from './ServerForm';
 
-export default function Edit({ server }: PageProps<{ server: Server }>) {
+export default function Edit({ server, owner }: PageProps<{ server: Server, owner?: User }>) {
     return (
         <Authenticated title={'Edit server: ' + server.name}>
             <Card
@@ -23,7 +23,7 @@ export default function Edit({ server }: PageProps<{ server: Server }>) {
                             />
                         </div>
                     </div>
-                    <ServerForm server={server} />
+                    <ServerForm server={server} owner={owner} />
                 </div>
             </Card>
         </Authenticated>

@@ -6,15 +6,9 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Link } from '@inertiajs/react';
 import Avatar from 'boring-avatars';
 import { useState } from 'react';
-import New from './New';
 
 export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
     const [filter, setFilter] = useState<string>('');
-    const [showForm, setShowForm] = useState(false);
-
-    if (showForm) {
-        return <New />;
-    };
 
     return (
         <Authenticated title={'All Servers'}>
@@ -37,12 +31,12 @@ export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
                         required
                     />
                 </div>
-                <div className={'ml-auto'}>
-                    <PrimaryButton onClick={() => setShowForm(true)}>New Server</PrimaryButton>
-                </div>
+                <Link href={'/servers/new'} className={'ml-auto'}>
+                    <PrimaryButton>New Server</PrimaryButton>
+                </Link>
             </div>
             <table className="w-full text-left text-sm text-gray-400">
-                <Head columns={['Name', 'Position', 'Status', 'Action']} />
+                <Head columns={['Name', 'Owner', 'Visibility', 'Status', 'Action']} />
                 <Body>
                     {servers
                         .filter((x) => x.name.startsWith(filter))
@@ -70,7 +64,14 @@ export default function Index({ servers }: PageProps<{ servers: Server[] }>) {
                                     </div>
                                 </th>
                                 <td className="px-6 py-4">
-                                    {server.public ? 'Public' : 'Private'}
+                                    {server.ownerId ?? 'None'}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {server.public ? (
+                                        <span className={'text-green-700'}>Public</span>
+                                    ) : (
+                                        <span className={'text-orange-700'}>Private</span>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center">

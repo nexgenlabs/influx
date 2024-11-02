@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/servers')->group(function () {
         Route::get('/', [ServersController::class, 'index'])->name('servers.index');
 
+        Route::get('/new', [ServersController::class, 'new'])->name('servers.new');
         Route::post('/new', [ServersController::class, 'store'])->name('servers.store');
 
         Route::get('/{server:id}', [ServersController::class, 'view'])->name('servers.view');

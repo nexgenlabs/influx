@@ -2,8 +2,9 @@ import Card from '@/Components/Card';
 import ServerForm from './ServerForm';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { ServerStackIcon } from '@heroicons/react/24/outline';
+import { PageProps, User } from '@/types';
 
-export default function New() {
+export default function New({ users }: PageProps<{ users: User[] }>) {
     return (
         <Authenticated title={'New Server'}>
             <Card
@@ -16,7 +17,7 @@ export default function New() {
                             <ServerStackIcon className={'h-24 text-green-600'} />
                         </div>
                     </div>
-                    <ServerForm />
+                    <ServerForm users={users} />
                 </div>
             </Card>
         </Authenticated>
